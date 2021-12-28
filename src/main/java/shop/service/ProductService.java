@@ -45,6 +45,10 @@ public class ProductService {
 	public List<Product> getProductByCategoryId(int id){
 		return productDao.findAllByCategory_Id(id);
 	}
+	
+	
+	
+	
 
 	public String buildImage(String imgName, MultipartFile file) throws IOException {
 		String imageUUID;
