@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import shop.dto.ProductDTO;
 import shop.model.Product;
 import shop.repository.ProductRepository;
 
@@ -57,5 +58,20 @@ public class ProductService {
 		return imageUUID;
 		
 	}
+
+	public ProductDTO buildUpdateProduct(Long id) {
+		Product product = getProductById(id).get();
+		ProductDTO prd = new ProductDTO();
+		prd.setId(id);
+		prd.setName(product.getName());
+		prd.setCategoryId(product.getCategory().getId());
+		prd.setImageName(product.getImageName());
+		prd.setPrice(product.getPrice());
+		prd.setWeight(product.getWeight());
+		prd.setDescription(product.getDescription());
+		return prd;
+	}
+
+
 	
 }

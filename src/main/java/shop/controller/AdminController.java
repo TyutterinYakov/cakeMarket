@@ -26,7 +26,7 @@ import shop.service.ProductService;
 
 @Controller
 public class AdminController {
-	private static final String uploadDir = System.getProperty("user.dir")+"/src/main/resources/static/productImages";
+	
 	@Autowired
 	private CategoryService categoryService; 
 	@Autowired
@@ -106,5 +106,13 @@ public class AdminController {
 	public String removeProduct(@PathVariable Long id) {
 		productService.removeProduct(id);
 		return "redirect:/admin/products";
+	}
+	@GetMapping("/admin/product/update/{id}")
+	public String updateProduct(@PathVariable Long id, Model md) {
+			
+			md.addAttribute("categories", categoryService.getAllCategory());
+			md.addAttribute("productDTO",  productService.buildUpdateProduct(id));
+			return "productsAdd";
+
 	}
 }
