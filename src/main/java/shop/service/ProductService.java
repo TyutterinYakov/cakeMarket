@@ -53,7 +53,7 @@ public class ProductService {
 			Path fileNameAndPath = Paths.get(uploadDir, imageUUID);
 			Files.write(fileNameAndPath, file.getBytes());
 		} else {
-			imageUUID = imgName;
+			imageUUID = "noimage.png";
 		}
 		return imageUUID;
 		
