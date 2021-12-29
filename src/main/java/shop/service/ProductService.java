@@ -75,7 +75,16 @@ public class ProductService {
 		prd.setDescription(product.getDescription());
 		return prd;
 	}
-
-
 	
+//	public double totalAmount(List<Product> cart) {
+//		
+//		if(!cart.isEmpty()) {
+//		double total=0;
+//		for(Product pr: cart) {
+//			 total+=pr.getPrice();
+//		}
+//		return total;
+//		}
+//		return 0;
+//	}
 }
