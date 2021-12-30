@@ -33,7 +33,7 @@
                     <a class="nav-link" th:href="@{/shop}" href="#">магазин</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Sign Up</a>
+                    <a class="nav-link" href="#">регистрация</a>
                 </li>
 
             </ul>
@@ -43,8 +43,8 @@
 </nav>
 <div class="container">
     <div class="col-sm-6">
-        <h3 style="margin-top: 10px">Sign Up Now</h3>
-        <p>Please fill out this to register</p>
+        <h3 style="margin-top: 10px">Регистрация</h3>
+        <p>Введите все данные для регистрации</p>
         <form th:action="@{/register}" th:object="${user}" method="post">
             <div class="form-group">
                 <label for="firstName">Имя</label>
@@ -58,8 +58,7 @@
                 <label for="email">Почта</label>
                 <input type="email" class="form-control form-control-lg" required minlength="6" placeholder="Email" name="email" id="email"
                        aria-describedby="emailHelp">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with
-                    anyone else.</small>
+                <small id="emailHelp" class="form-text text-muted">Ваша почта и данные в безопасности.</small>
             </div>
             <div class="form-group">
                 <label for="password">Пароль</label>
@@ -68,8 +67,8 @@
             </div>
 
             <input type="submit" value="Register" class="btn btn-primary btn-block">
-            <span style="margin-top: 10px">Already have an account <a class="linkControl" href="./login.html"
-                                                                      th:href="@{/login}">Login here</a></span>
+            <span style="margin-top: 10px">Уже есть аккаунт? <a class="linkControl" href="./login.html"
+                                                                      th:href="@{/login}">Авторизуйтесь</a></span>
         </form>
     </div>
 </div>

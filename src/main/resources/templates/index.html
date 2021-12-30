@@ -29,19 +29,19 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/}" href="#">home</a>
+                    <a class="nav-link" th:href="@{/}" href="#">главная</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/shop}" href="#">shop</a>
+                    <a class="nav-link" th:href="@{/shop}" href="#">магазин</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}" href="#">login</a>
+                    <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}" href="#">вход</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#">logout</a>
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#">выход</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/cart}" href="#">cart</a>
+                    <a class="nav-link" th:href="@{/cart}" href="#">корзина</a>
                 </li>
                 <li class="nav-item active">
                     <span class="nav-link" th:text="${cartCount}">0</span>
