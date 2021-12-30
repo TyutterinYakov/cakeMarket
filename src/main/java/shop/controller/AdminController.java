@@ -22,6 +22,7 @@ import shop.dto.ProductDTO;
 import shop.model.Category;
 import shop.model.Product;
 import shop.service.CategoryService;
+import shop.service.OrderService;
 import shop.service.ProductService;
 
 @Controller
@@ -31,6 +32,8 @@ public class AdminController {
 	private CategoryService categoryService; 
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private OrderService orderService;
 	
 	@GetMapping("/admin")
 	public String adminHome() {
@@ -114,5 +117,18 @@ public class AdminController {
 			md.addAttribute("productDTO",  productService.buildUpdateProduct(id));
 			return "productsAdd";
 
+	}
+	
+	//ORDERS
+	
+	@GetMapping("/admin/orders")
+	public String getOrders(Model md) {
+		md.addAttribute("orders", orderService.findAllOrders());
+		return "orders";
+	}
+	@GetMapping("/admin/orders/delete/{id}")
+	public String deleteOrder(@PathVariable Long id) {
+		orderService.removeOrder(id);
+		return "redirect:/admin/orders";
 	}
 }

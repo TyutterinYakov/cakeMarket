@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import shop.global.GlobalData;
 import shop.model.Order;
-import shop.model.OrderSimple;
 import shop.model.Product;
 import shop.repository.OrderRepository;
 
@@ -33,15 +32,16 @@ public class OrderService {
 		
 		return products;
 	}
-	
-	public List<OrderSimple> getOrders(){
-		List<OrderSimple> simp = new ArrayList<>();
-		for(int i=0; i<GlobalData.cart.size(); i++) {
-			OrderSimple os = new OrderSimple();
-			os.setKey(i);
-			os.setValue(GlobalData.cart.get(i).getName());
-			simp.add(os);
-		}
-		return simp;
+	@Transactional
+	public List<Order> findAllOrders(){
+		
+		return orderRepo.findAll();
 	}
+
+	public void removeOrder(Long id) {
+		orderRepo.deleteById(id);
+		
+	}
+	
+
 }

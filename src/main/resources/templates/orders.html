@@ -7,8 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    
     <title>Document</title>
 </head>
 <body>
@@ -36,46 +35,43 @@
         </div>
     </div>
 </nav>
-<div class="jumbotron text-center">
-    <h1 class="display-4">Добро Пожаловать, Admin</h1>
-    <p>Легкое управление магазином <mark>CMS</mark></p>
-</div>
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-3 pt-3" >
-            <div class="card" style="background-color:white;">
-                <div class="card-body">
-                    <h4 class="card-title">Категории</h4>
-                    <p class="card-text">Управление всеми категориями</p>
-                    <a href="#" th:href="@{/admin/categories}" class="card-link btn btn-primary">Manage</a>
 
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3 pt-3" >
-            <div class="card" style="background-color:white;">
-                <div class="card-body">
-                    <h4 class="card-title">Продукты</h4>
-                    <p class="card-text">Управление всеми продуктами</p>
-                    <a href="#" th:href="@{/admin/products}" class="card-link btn btn-primary">Manage</a>
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Номер</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Товары</th>
+            <th scope="col">Город</th>
+            <th scope="col">Адрес</th>
+             <th scope="col">Адрес</th>
+            <th scope="col">Удалить</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order : ${orders}">
+            <th scope="row" th:text="${order.orderId}">1</th>
+            <td th:text="${order.firstName}">Larry</td>
+            <td th:text="${order.lastName}">Larry</td>
+            <td style="width:30%">
+	         	<select class="form-control">
+                        <option th:each="product : ${order.products}"
+                                th:value="${product.id}"
+                                th:text="${product.name}">
+                    </select>
+	    
+	        </td>
+            <td style="width:30%" th:text="${order.city}">Larry</td>
+            <td style="width:30%" th:text="${order.addressOne}">Larry</td>
+            <td style="width:30%" th:text="${order.addressTwo}">Larry</td>
+			<td><a href="" th:href="@{/admin/orders/delete/{id}(id=${order.orderId})}" class="btn btn-danger">Удалить</a></td>
 
-                </div>
-            </div>
-        </div>
+        </tr>
 
-    </div>
-            <div class="col-sm-3 pt-3" >
-            <div class="card" style="background-color:white;">
-                <div class="card-body">
-                    <h4 class="card-title">Заказы</h4>
-                    <p class="card-text">Просмотр заказов</p>
-                    <a href="#" th:href="@{/admin/orders}" class="card-link btn btn-primary">Manage</a>
-
-                </div>
-            </div>
-        </div>
-
-    </div>
+        </tbody>
+    </table>
 </div>
 
 
