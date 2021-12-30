@@ -29,9 +29,7 @@
                 <li class="nav-item active">
                     <a class="nav-link" th:href="@{/logout}" href="#">выход</a>
                 </li>
-
             </ul>
-
         </div>
     </div>
 </nav>
@@ -47,6 +45,7 @@
             <th scope="col">Город</th>
             <th scope="col">Адрес</th>
              <th scope="col">Адрес</th>
+             <th scope="col">Инфо.</th>
             <th scope="col">Удалить</th>
         </tr>
         </thead>
@@ -61,13 +60,12 @@
                                 th:value="${product.id}"
                                 th:text="${product.name}">
                     </select>
-	    
 	        </td>
             <td style="width:30%" th:text="${order.city}">Larry</td>
-            <td style="width:30%" th:text="${order.addressOne}">Larry</td>
-            <td style="width:30%" th:text="${order.addressTwo}">Larry</td>
+            <td style="width:20%" th:text="${order.addressOne}">Larry</td>
+            <td style="width:20%" th:text="${order.addressTwo}">Larry</td>
+            <td style="width:35%" th:text="${order.info}">Larry</td>
 			<td><a href="" th:href="@{/admin/orders/delete/{id}(id=${order.orderId})}" class="btn btn-danger">Удалить</a></td>
-
         </tr>
 
         </tbody>
