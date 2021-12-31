@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,15 +19,13 @@ import shop.model.Role;
 import shop.model.User;
 import shop.repository.RoleRepository;
 import shop.repository.UserRepository;
+import shop.service.LoginService;
 
 @Controller
 public class LoginController {
 	@Autowired
-	private BCryptPasswordEncoder cryptPass;
-	@Autowired
-	UserRepository userRepo;
-	@Autowired
-	RoleRepository roleRepo;
+	private LoginService loginServ;
+
 	
 	@GetMapping("/login")
 	public String login() {
@@ -39,14 +38,13 @@ public class LoginController {
 		return "register";
 	}
 	@PostMapping("/register")
-	public String registerPost(@ModelAttribute("user") User user, HttpServletRequest request) throws ServletException {
-		String password = user.getPassword();
-		user.setPassword(cryptPass.encode(password));
-		List<Role> roles = new ArrayList<>();
-		roles.add(roleRepo.findById(2).get());
-		user.setRoles(roles);
-		userRepo.save(user);
-		request.login(user.getEmail(), password);
+	public String registerPost(@ModelAttribute("user") User user, HttpServletRequest request, Model md) throws ServletException {
+		boolean check = loginServ.register(user, request);
+		if(!check) {
+			md.addAttribute("error_register", check);
+			return "/register";
+		}
+
 		return "redirect:/";
 	}
 }
