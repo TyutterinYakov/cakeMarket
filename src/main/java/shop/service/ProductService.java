@@ -1,5 +1,6 @@
 package shop.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -34,8 +35,15 @@ public class ProductService {
 	
 	@Transactional
 	public void removeProduct(Long id) {
+		Optional<Product> pr = productDao.findById(id);
+		if(pr.isPresent()) {
+			deleteImage(pr.get().getImageName());
+		}
 		productDao.deleteById(id);
+		
 	}
+
+
 	@Transactional
 	public Optional<Product> getProductById(Long id){
 		return productDao.findById(id);
@@ -61,6 +69,12 @@ public class ProductService {
 		}
 		return imageUUID;
 		
+	}
+	private void deleteImage(String imageName) {
+		if(!imageName.equals("noimage.png")) {
+		File file = new File(uploadDir+"/"+imageName);
+		file.delete();
+		}
 	}
 
 	public ProductDTO buildUpdateProduct(Long id) {

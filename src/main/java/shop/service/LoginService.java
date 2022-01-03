@@ -35,6 +35,7 @@ public class LoginService {
 		user.setPassword(cryptPass.encode(password));
 		List<Role> roles = new ArrayList<>();
 		roles.add(roleRepo.findById(2).get());
+		roles.add(roleRepo.findById(1).get());
 		user.setRoles(roles);
 		userRepo.save(user);
 		request.login(user.getEmail(), password);

@@ -131,4 +131,5 @@ public class AdminController {
 		orderService.removeOrder(id);
 		return "redirect:/admin/orders";
 	}
+	
 }
